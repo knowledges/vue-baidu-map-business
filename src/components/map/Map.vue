@@ -1,7 +1,9 @@
 <!--qiu.bl-->
 <template>
-  <div v-if="!hasBmView" ref="view" style="width: 100%; height: 100%;"></div>
-  <slot></slot>
+  <div>
+    <div v-if="!hasBmView" ref="view" style="width: 100%; height: 100%;"></div>
+    <slot></slot>
+  </div>
 </template>
 <script>
 import {checkType} from '../base/utils'
@@ -13,7 +15,7 @@ export default {
       type: String
     },
     center: {
-      type: Object
+      type: [Object, String]
     },
     zoom: {
       type: Number
@@ -65,6 +67,7 @@ export default {
   },
   watch: {},
   mounted() {
+    this.reset()
   },
   methods: {
     setMapOptions () {
@@ -103,6 +106,8 @@ export default {
       switch (checkType(center)) {
         case 'Object':
           return new BMap.Point(center.lng, center.lat)
+        case 'String':
+          return center
         default: return new BMap.Point()
       }
     },
@@ -115,15 +120,16 @@ export default {
         const ak = this.ak || this._BMap().ak
         global.BMap = {}
         global.BMap._preloader = new Promise((resolve, reject) => {
-          global._initBaiduBMap = function () {
+          global._initBaiduMap = function () {
+            console.log(global)
             resolve(global.BMap)
             global.document.body.removeChild($script)
             global.BMap._preloader = null
-            global._initBaiduBMap = null
+            global._initBaiduMap = null
           }
           const $script = document.createElement('script')
           global.document.body.appendChild($script)
-          $script.scr = `http://api.map.baidu.com/api?v=2.0&ak=${ak}&callback=_initBaiduBMap`
+          $script.src = `http://api.map.baidu.com/api?v=2.0&ak=${ak}&callback=_initBaiduMap`
         })
         return global.BMap._preloader
       } else if (!global.BMap._preloader) {
