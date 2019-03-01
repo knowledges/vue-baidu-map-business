@@ -30,5 +30,20 @@ Viewport
 |zoom   |	Number	             |  视野级别   |
 ---------------------------------------------
 ```
-
-
+#控件
+比例尺
+```bash
+<template>
+  <baidu-map class="map" center="北京">
+    <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
+  </baidu-map>
+</template>
+```
+缩放
+```bash
+<template>
+  <baidu-map class="map" center="北京">
+    <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
+  </baidu-map>
+</template>
+```
