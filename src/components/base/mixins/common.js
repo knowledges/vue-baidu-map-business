@@ -30,7 +30,7 @@ class Mixin {
         const $parent = getParent(this.$parent)
         const BMap = this.BMap = $parent.BMap
         const map = this.map = $parent.map
-        // this.load()
+        this.load()
         this.$emit('ready', {
           BMap,
           map
