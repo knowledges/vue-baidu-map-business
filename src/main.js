@@ -10,6 +10,7 @@ const errorHandler = (error, vm, info) => {
   console.error(info)
 }
 Vue.config.errorHandler = errorHandler
+Vue.config.performance = false
 Vue.config.productionTip = false
 Vue.use(BaiduMap, {
   ak: 'sFGGCnZu8HcewIdGMFGGaGypsfILG36G'
