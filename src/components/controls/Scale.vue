@@ -25,11 +25,11 @@ export default {
   methods: {
     load () {
       const {BMap, map, anchor, offset} = this
-      this.SCALE_DIRECTION = new BMap.ScaleControl({
+      this.initialInstance = new BMap.ScaleControl({
         anchor: global[anchor],
         offset: offset && CreateSize(BMap ,offset)
       })
-      map.addControl(this.SCALE_DIRECTION)
+      map.addControl(this.initialInstance)
     }
   }
 }

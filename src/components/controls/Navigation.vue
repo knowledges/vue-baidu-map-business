@@ -44,14 +44,14 @@ export default {
   methods: {
     load () {
       const {BMap, map, anchor, offset, type, showZoomInfo, enableGeolocation} = this
-      this.SCALE_DIRECTION = new BMap.NavigationControl({
+      this.initialInstance = new BMap.NavigationControl({
         anchor: global[anchor],
         offset: offset && CreateSize(BMap, offset),
         type: global[type],
         showZoomInfo: showZoomInfo,
         enableGeolocation: enableGeolocation
       })
-      map.addControl(this.SCALE_DIRECTION)
+      map.addControl(this.initialInstance)
     }
   }
 }

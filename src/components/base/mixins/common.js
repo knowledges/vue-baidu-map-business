@@ -42,12 +42,16 @@ class Mixin {
       reload () {
         this && this.BMap && this.$nextTick(() => {
           this.unload()
-          // this.$nextTick(this.load)
+          this.$nextTick(this.load)
         })
       },
       unload () { console.log('我要清除一些东西') }
     }
-    this.computed = {}
+    this.computed = {
+      renderByParent () {
+        return this.$parent.preventChildrenRender
+      }
+    }
     this.mounted = function () {
       const $parent = getParent(this.$parent)
       const map = $parent.map
