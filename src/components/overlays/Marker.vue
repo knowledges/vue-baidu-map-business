@@ -68,47 +68,34 @@ export default {
   },
   methods: {
     load () {
-      const {BMap, map, position, Moffset, Micon, massClear, dragging, clicking, raiseOnDrag, draggingCursor, rotation, shadow, labelStyle, Loffset} = this
-
+      const { position } = this
       if (checkType(position) === 'Array') {
         position.forEach((item, key) => {
-          const overlay = new BMap.Marker(new BMap.Point(item.lng, item.lat), {
-            offset: Moffset,
-            icon: Micon,
-            enableMassClear: massClear,
-            enableDragging: dragging,
-            enableClicking: clicking,
-            raiseOnDrag: raiseOnDrag,
-            draggingCursor: draggingCursor,
-            rotation: rotation,
-            shadow: shadow,
-            title: item.title
-          })
-          this.initialInstance = overlay
-          var content = item.title
-          const params = { content, Loffset, labelStyle }
-          item.title && overlay && overlay.setLabel(CreateLable(BMap, params))
-          map.addOverlay(overlay)
+          this.createdMarkers(item)
         })
       } else {
-        const overlay = new BMap.Marker(new BMap.Point(position.lng, position.lat), {
-          offset: Moffset,
-          icon: Micon,
-          enableMassClear: massClear,
-          enableDragging: dragging,
-          enableClicking: clicking,
-          raiseOnDrag: raiseOnDrag,
-          draggingCursor: draggingCursor,
-          rotation: rotation,
-          shadow: shadow,
-          title: position.title
-        })
-        this.initialInstance = overlay
-        var content = position.title
-        const params = { content, Loffset, labelStyle }
-        position.title && overlay && overlay.setLabel(CreateLable(BMap, params))
-        map.addOverlay(this.initialInstance)
+        this.createdMarkers(position)
       }
+    },
+    createdMarkers (item) {
+      const {BMap, map, Moffset, Micon, massClear, dragging, clicking, raiseOnDrag, draggingCursor, rotation, shadow, labelStyle, Loffset} = this
+      const overlay = new BMap.Marker(new BMap.Point(item.lng, item.lat), {
+        offset: Moffset,
+        icon: Micon,
+        enableMassClear: massClear,
+        enableDragging: dragging,
+        enableClicking: clicking,
+        raiseOnDrag: raiseOnDrag,
+        draggingCursor: draggingCursor,
+        rotation: rotation,
+        shadow: shadow,
+        title: item.title
+      })
+      this.initialInstance = overlay
+      var content = item.title
+      const params = { content, Loffset, labelStyle }
+      item.title && overlay && overlay.setLabel(CreateLable(BMap, params))
+      map.addOverlay(overlay)
     }
   }
 }
