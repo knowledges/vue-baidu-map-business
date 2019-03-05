@@ -72,7 +72,7 @@ export default {
 
       if (checkType(position) === 'Array') {
         position.forEach((item, key) => {
-          this.initialInstance = new BMap.Marker(new BMap.Point(item.lng, item.lat), {
+          const overlay = new BMap.Marker(new BMap.Point(item.lng, item.lat), {
             offset: Moffset,
             icon: Micon,
             enableMassClear: massClear,
@@ -84,7 +84,11 @@ export default {
             shadow: shadow,
             title: item.title
           })
-          map.addOverlay(this.initialInstance)
+          this.initialInstance = overlay
+          var content = item.title
+          const params = { content, Loffset, labelStyle }
+          item.title && overlay && overlay.setLabel(CreateLable(BMap, params))
+          map.addOverlay(overlay)
         })
       } else {
         const overlay = new BMap.Marker(new BMap.Point(position.lng, position.lat), {
@@ -100,7 +104,8 @@ export default {
           title: position.title
         })
         this.initialInstance = overlay
-        const params = { position, Loffset, labelStyle }
+        var content = position.title
+        const params = { content, Loffset, labelStyle }
         position.title && overlay && overlay.setLabel(CreateLable(BMap, params))
         map.addOverlay(this.initialInstance)
       }
