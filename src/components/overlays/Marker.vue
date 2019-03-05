@@ -7,6 +7,7 @@
 </template>
 <script>
 import commonMinxin from '../base/mixins/common'
+import {CreateSize, CreateLable} from '../base/mixins/factory'
 import {checkType} from '../base/utils'
 export default {
   name: 'bm-marker',
@@ -16,8 +17,8 @@ export default {
     position: {
       type: [Object, Array]
     },
-    offset: { },
-    icon: { },
+    Moffset: { }, // 批注的 offset
+    Micon: { },// 批注的 icon
     massClear: {
       type: Boolean,
       default: true
@@ -45,7 +46,9 @@ export default {
     },
     animation: {
       type: String
-    }
+    },
+    Loffset: {}, // label 的 offset
+    labelStyle: {}
   },
   data() {
     return {}
@@ -55,20 +58,23 @@ export default {
       this.reload()
     },
     massClear (val) {
-//      val ? this.initialInstance.
+      val ? this.initialInstance.enableMassClear() : this.initialInstance.disableMassClear()
+    },
+    labelStyle () {
+      this.reload()
     }
   },
   mounted() {
   },
   methods: {
     load () {
-      const {BMap, map, position, offset, icon, massClear, dragging, clicking, raiseOnDrag, draggingCursor, rotation, shadow, animation} = this
+      const {BMap, map, position, Moffset, Micon, massClear, dragging, clicking, raiseOnDrag, draggingCursor, rotation, shadow, labelStyle, Loffset} = this
 
       if (checkType(position) === 'Array') {
         position.forEach((item, key) => {
           this.initialInstance = new BMap.Marker(new BMap.Point(item.lng, item.lat), {
-            offset: offset,
-            icon: icon,
+            offset: Moffset,
+            icon: Micon,
             enableMassClear: massClear,
             enableDragging: dragging,
             enableClicking: clicking,
@@ -81,9 +87,9 @@ export default {
           map.addOverlay(this.initialInstance)
         })
       } else {
-        this.initialInstance = new BMap.Marker(new BMap.Point(position.lng, position.lat), {
-          offset: offset,
-          icon: icon,
+        const overlay = new BMap.Marker(new BMap.Point(position.lng, position.lat), {
+          offset: Moffset,
+          icon: Micon,
           enableMassClear: massClear,
           enableDragging: dragging,
           enableClicking: clicking,
@@ -93,6 +99,9 @@ export default {
           shadow: shadow,
           title: position.title
         })
+        this.initialInstance = overlay
+        const params = { position, Loffset, labelStyle }
+        position.title && overlay && overlay.setLabel(CreateLable(BMap, params))
         map.addOverlay(this.initialInstance)
       }
     }

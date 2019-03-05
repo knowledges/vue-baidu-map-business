@@ -5,7 +5,7 @@
       <bm-view style="width: 100%; height: 100%; flex: 1;"></bm-view>
       <bm-scale :anchor="'BMAP_ANCHOR_BOTTOM_LEFT'" :offset="{width: 0, height: 50}"></bm-scale>
       <bm-navigation :anchor="'BMAP_ANCHOR_TOP_LEFT'" :type="'BMAP_NAVIGATION_CONTROL_LARGE'"></bm-navigation>
-      <bm-marker :position="coords" :animation="'BMAP_ANIMATION_DROP'"></bm-marker>
+      <bm-marker :position="coords" :Loffset="{width: 15, heigth: 15}" :animation="'BMAP_ANIMATION_DROP'"></bm-marker>
     </baidu-map>
   </div>
 </template>
@@ -24,33 +24,43 @@ export default {
   },
   data () {
     return {
-      coords: [
-        {
-          lng: '118.779142',
-          lat: '31.981107',
-          title: '东软大楼'
-        },
-        {
-          lng: '118.783549',
-          lat: '31.990869'
-        },
-        {
-          lng: '118.790879',
-          lat: '31.986643'
-        },
-        {
-          lng: '118.774278',
-          lat: '31.981436'
-        },
-        {
-          lng: '118.775859',
-          lat: '31.971451'
-        },
-        {
-          lng: '118.792675',
-          lat: '31.981804'
-        }
-      ]
+      coords: {
+        lng: '118.779142',
+        lat: '31.981107',
+        title: '东软大楼'
+      }
+//      coords: [
+//        {
+//          lng: '118.779142',
+//          lat: '31.981107',
+//          title: '东软大楼'
+//        },
+//        {
+//          lng: '118.783549',
+//          lat: '31.990869',
+//          title: '阅城国际花园'
+//        },
+//        {
+//          lng: '118.79197',
+//          lat: '31.986325',
+//          title: '江苏舜天凯信贸易有限公司'
+//        },
+//        {
+//          lng: '118.77444',
+//          lat: '31.981409',
+//          title: '新华汇'
+//        },
+//        {
+//          lng: '118.775859',
+//          lat: '31.971451',
+//          title: '南京徐工汽车制造有限公司'
+//        },
+//        {
+//          lng: '118.792675',
+//          lat: '31.981804',
+//          title: '中兴通讯'
+//        }
+//      ]
     }
   },
   mounted () {
