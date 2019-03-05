@@ -8,7 +8,6 @@ export function CreateSize(BMap, options) {
 }
 
 export function CreateLable(BMap, options = {}) {
-  console.log(options)
   const {Loffset, labelStyle, content} = options
   const overlay = new BMap.Label(content, {
     offset: CreateSize(BMap, Loffset)

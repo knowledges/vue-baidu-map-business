@@ -9,6 +9,7 @@
 import commonMinxin from '../base/mixins/common'
 import {CreateSize, CreateLable} from '../base/mixins/factory'
 import {checkType} from '../base/utils'
+import bindEvents from '../base/bindEvent'
 export default {
   name: 'bm-marker',
   components: {},
@@ -91,10 +92,12 @@ export default {
         shadow: shadow,
         title: item.title
       })
+      this.$set(overlay, 'item', item)
       this.initialInstance = overlay
       var content = item.title
       const params = { content, Loffset, labelStyle }
       item.title && overlay && overlay.setLabel(CreateLable(BMap, params))
+      bindEvents.call(this, overlay)
       map.addOverlay(overlay)
     }
   }

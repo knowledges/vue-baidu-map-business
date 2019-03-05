@@ -5,7 +5,12 @@
       <bm-view style="width: 100%; height: 100%; flex: 1;"></bm-view>
       <bm-scale :anchor="'BMAP_ANCHOR_BOTTOM_LEFT'" :offset="{width: 0, height: 50}"></bm-scale>
       <bm-navigation :anchor="'BMAP_ANCHOR_TOP_LEFT'" :type="'BMAP_NAVIGATION_CONTROL_LARGE'"></bm-navigation>
-      <bm-marker :position="coords" :Loffset="{width: 15, height: -15}" :labelStyle="labelStyle" :animation="'BMAP_ANIMATION_DROP'"></bm-marker>
+      <bm-marker :position="coords"
+                 :Loffset="{width: 15, height: -15}"
+                 :labelStyle="labelStyle"
+                 :animation="'BMAP_ANIMATION_DROP'"
+                 @click="markerInfo"
+      ></bm-marker>
     </baidu-map>
   </div>
 </template>
@@ -72,6 +77,13 @@ export default {
     }
   },
   mounted () {
+  },
+  methods: {
+     markerInfo (item) {
+      console.log('123')
+      console.log(item)
+      console.log(item.target.item)
+    }
   }
 }
 </script>
