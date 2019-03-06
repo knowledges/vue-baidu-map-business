@@ -3,6 +3,7 @@ import BmView from './components/map/MapView.vue'
 import BmScale from './components/controls/Scale.vue'
 import BmNavigation from './components/controls/Navigation.vue'
 import BmMarker from './components/overlays/Marker.vue'
+import BmPolyine from './components/overlays/Polyline.vue'
 
 export default {
   install (Vue, opt) {
@@ -13,7 +14,8 @@ export default {
     Vue.component('bm-scale', BmScale)
     Vue.component('bm-navigation', BmNavigation)
     Vue.component('bm-marker', BmMarker)
+    Vue.component('bm-polyine', BmPolyine)
   }
 }
 
-export { BaiduMap, BmView, BmScale, BmNavigation, BmMarker }
+export { BaiduMap, BmView, BmScale, BmNavigation, BmMarker, BmPolyine }

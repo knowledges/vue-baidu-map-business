@@ -1,5 +1,6 @@
 export function CreatePoint(BMap, options = {}) {
-
+  const {lng, lat} = options
+  return new BMap.Point(lng, lat)
 }
 
 export function CreateSize(BMap, options) {

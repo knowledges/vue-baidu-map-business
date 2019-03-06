@@ -11,6 +11,7 @@
                  :animation="'BMAP_ANIMATION_DROP'"
                  @click="markerInfo"
       ></bm-marker>
+      <BmPolyine :path="coords" :strokeColor="'red'" :strokeWeight="2" :strokeOpacity="0.7"></BmPolyine>
     </baidu-map>
   </div>
 </template>
@@ -21,11 +22,12 @@ import BmView from './components/map/MapView.vue'
 import BmScale from './components/controls/Scale.vue'
 import BmNavigation from './components/controls/Navigation.vue'
 import BmMarker from './components/overlays/Marker.vue'
+import BmPolyine from './components/overlays/Polyline.vue'
 export default {
   name: 'App',
   components: {
     BaiduMap, BmView, BmScale, BmNavigation,
-    BmMarker
+    BmMarker, BmPolyine
   },
   data () {
     return {
