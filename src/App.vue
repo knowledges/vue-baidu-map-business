@@ -12,6 +12,14 @@
                  @click="markerInfo"
       ></bm-marker>
       <BmPolyine :path="coords" :strokeColor="'red'" :strokeWeight="2" :strokeOpacity="0.7"></BmPolyine>
+      <BmPolygon :path="coords" :strokeColor="'blue'" :strokeWeight="2" :strokeOpacity="1"></BmPolygon>
+      <BmCircle :center="{lng: '118.779142', lat: '31.981107'}" :radius="50" :strokeColor="'blue'" :strokeWeight="1" :strokeOpacity="0.4"></BmCircle>
+      <BmPointCollection :points="points"
+                         :shape="'BMAP_POINT_SHAPE_STAR'"
+                         :size="'BMAP_POINT_SIZE_SMALL'"
+                         :color="'#d340c3'"
+                         @click="markerInfo"
+      ></BmPointCollection>
     </baidu-map>
   </div>
 </template>
@@ -23,11 +31,14 @@ import BmScale from './components/controls/Scale.vue'
 import BmNavigation from './components/controls/Navigation.vue'
 import BmMarker from './components/overlays/Marker.vue'
 import BmPolyine from './components/overlays/Polyline.vue'
+import BmPolygon from './components/overlays/Polygon.vue'
+import BmCircle from './components/overlays/Circle.vue'
+import BmPointCollection from './components/overlays/PointCollection.vue'
 export default {
   name: 'App',
   components: {
     BaiduMap, BmView, BmScale, BmNavigation,
-    BmMarker, BmPolyine
+    BmMarker, BmPolyine, BmPolygon, BmCircle, BmPointCollection
   },
   data () {
     return {
@@ -39,26 +50,21 @@ export default {
         'color': '#FFF',
         'padding': '6px',
       },
-//      coords: {
-//        lng: '118.779142',
-//        lat: '31.981107',
-//        title: '东软大楼'
-//      }
+      MyLocation: {
+        lng: '118.759319',
+        lat: '31.969347',
+        title: '牛首坊'
+      },
       coords: [
-        {
-          lng: '118.779142',
-          lat: '31.981107',
-          title: '东软大楼'
-        },
         {
           lng: '118.783549',
           lat: '31.990869',
           title: '阅城国际花园'
         },
         {
-          lng: '118.79197',
-          lat: '31.986325',
-          title: '江苏舜天凯信贸易有限公司'
+          lng: '118.779142',
+          lat: '31.981107',
+          title: '东软大楼'
         },
         {
           lng: '118.77444',
@@ -74,17 +80,33 @@ export default {
           lng: '118.792675',
           lat: '31.981804',
           title: '中兴通讯'
+        },
+        {
+          lng: '118.79197',
+          lat: '31.986325',
+          title: '江苏舜天凯信贸易有限公司'
         }
-      ]
+      ],
+      points: []
     }
   },
   mounted () {
+    setTimeout(() => {
+      this.addPoints()
+    }, 1000)
   },
   methods: {
      markerInfo (item) {
-      console.log('123')
       console.log(item)
       console.log(item.target.item)
+    },
+    addPoints () {
+      const points = [];
+      for (var i = 0; i < 10000; i++) {
+        const position = {lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21}
+        points.push(position)
+      }
+      this.points = points
     }
   }
 }
