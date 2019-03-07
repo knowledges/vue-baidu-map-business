@@ -7,8 +7,7 @@
 </template>
 <script>
 import commonMinxin from '../base/mixins/common'
-import {CreateSize, CreateLable} from '../base/mixins/factory'
-import {checkType} from '../base/utils'
+import {CreateSize, CreateLable, CreatePoint} from '../base/mixins/factory'
 import bindEvents from '../base/bindEvent'
 export default {
   name: 'bm-marker',
@@ -16,7 +15,7 @@ export default {
   mixins: [commonMinxin('overlay')],
   props: {
     position: {
-      type: [Object, Array]
+      type: Object
     },
     Moffset: { }, // 批注的 offset
     Micon: { },// 批注的 icon
@@ -55,6 +54,20 @@ export default {
     return {}
   },
   watch: {
+    'position.lng' (val, oldVal) {
+      const {BMap, initialInstance, position, renderByParent, $parent} = this
+      if (val !== oldVal && val >= -180 && val <= 180) {
+        initialInstance.setPosition(CreatePoint(BMap, {lng: val, lat: position.lat}))
+      }
+      renderByParent && $parent.reload()
+    },
+    'position.lat' (val, oldVal) {
+      const {BMap, initialInstance, position, renderByParent, $parent} = this
+      if (val !== oldVal && val >= -74 && val <= 74) {
+        initialInstance.setPosition(CreatePoint(BMap, {lng: position.lng, lat: val}))
+      }
+      renderByParent && $parent.reload()
+    },
     'position.title' () {
       this.reload()
     },
@@ -69,34 +82,24 @@ export default {
   },
   methods: {
     load () {
-      const { position } = this
-      if (checkType(position) === 'Array') {
-        position.forEach((item, key) => {
-          this.createdMarkers(item)
-        })
-      } else {
-        this.createdMarkers(position)
-      }
-    },
-    createdMarkers (item) {
-      const {BMap, map, Moffset, Micon, massClear, dragging, clicking, raiseOnDrag, draggingCursor, rotation, shadow, labelStyle, Loffset} = this
-      const overlay = new BMap.Marker(new BMap.Point(item.lng, item.lat), {
+      const { BMap, map, Moffset, Micon, massClear, dragging, clicking, raiseOnDrag, draggingCursor, rotation, shadow, labelStyle, Loffset, position } = this
+      const overlay = new BMap.Marker(new BMap.Point(position.lng, position.lat), {
         offset: Moffset,
         icon: Micon,
         enableMassClear: massClear,
         enableDragging: dragging,
         enableClicking: clicking,
         raiseOnDrag: raiseOnDrag,
-        draggingCursor: draggingCursor,
-        rotation: rotation,
-        shadow: shadow,
-        title: item.title
+        draggingCursor,
+        rotation,
+        shadow,
+        title: position.title
       })
-      this.$set(overlay, 'item', item)
+      this.$set(overlay, 'item', position)
       this.initialInstance = overlay
-      var content = item.title
+      var content = position.title
       const params = { content, Loffset, labelStyle }
-      item.title && overlay && overlay.setLabel(CreateLable(BMap, params))
+      position.title && overlay && overlay.setLabel(CreateLable(BMap, params))
       bindEvents.call(this, overlay)
       map.addOverlay(overlay)
     }
