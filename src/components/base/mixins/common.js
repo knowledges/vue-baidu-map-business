@@ -45,7 +45,16 @@ class Mixin {
           this.$nextTick(this.load)
         })
       },
-      unload () { console.log('我要清除一些东西') }
+      unload () {
+        const {map, initialInstance} = this
+        try {
+          console.log('我进入了 unload')
+          map[types[prop.type].unload](initialInstance)
+          // map.removeOverlay(initialInstance) // 清除浮动层
+          console.log('离开了')
+          // map.clearOverlays() // TASK CASE 当批注的数据类型 Object || Array 来回切换； 批注不能清除的问题
+        } catch (e) {}
+      }
     }
     this.computed = {
       renderByParent () {
@@ -63,4 +72,4 @@ class Mixin {
   }
 }
 
-export default types => new Mixin({types})
+export default type => new Mixin({type})
