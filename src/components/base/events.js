@@ -1,4 +1,8 @@
 export default {
+  'bm-geolocation': [
+    'locationSuccess',
+    'locationError'
+  ],
   'bm-marker': [
     'click'
   ],

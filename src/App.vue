@@ -5,7 +5,7 @@
       <bm-view style="width: 100%; height: 100%; flex: 1;"></bm-view>
       <bm-scale :anchor="'BMAP_ANCHOR_BOTTOM_LEFT'" :offset="{width: 0, height: 50}"></bm-scale>
       <bm-navigation :anchor="'BMAP_ANCHOR_TOP_LEFT'" :type="'BMAP_NAVIGATION_CONTROL_LARGE'"></bm-navigation>
-      <template v-for="item in MyLocation">
+      <template v-for="item in coords">
         <bm-marker :position="item"
                    :Loffset="{width: 15, height: -15}"
                    :labelStyle="labelStyle"
@@ -14,15 +14,16 @@
         ></bm-marker>
       </template>
 
-      <BmPolyine :path="coords" :strokeColor="'red'" :strokeWeight="2" :strokeOpacity="0.7"></BmPolyine>
-      <!--<BmPolygon :path="coords" :strokeColor="'blue'" :strokeWeight="2" :strokeOpacity="1"></BmPolygon>-->
-      <!--<BmCircle :center="{lng: '118.779142', lat: '31.981107'}" :radius="50" :strokeColor="'blue'" :strokeWeight="1" :strokeOpacity="0.4"></BmCircle>-->
-      <!--<BmPointCollection :points="points"-->
-                         <!--:shape="'BMAP_POINT_SHAPE_CIRCLE'"-->
-                         <!--:size="'BMAP_POINT_SIZE_SMALL'"-->
-                         <!--:color="'#d340c3'"-->
-                         <!--@click="markerInfo"-->
-      <!--&gt;</BmPointCollection>-->
+      <!--<BmPolyine :path="coords" :strokeColor="'red'" :strokeWeight="2" :strokeOpacity="0.7"></BmPolyine>-->
+      <!--<BmPolygon :path="coords" :strokeColor="'blue'" :strokeWeight="2" :strokeOpacity="0.5"></BmPolygon>-->
+      <BmCircle :center="{lng: '118.779142', lat: '31.981107'}" :radius="50" :strokeColor="'blue'" :strokeWeight="1" :strokeOpacity="0.4"></BmCircle>
+      <BmPointCollection :points="points"
+                         :shape="'BMAP_POINT_SHAPE_CIRCLE'"
+                         :size="'BMAP_POINT_SIZE_SMALL'"
+                         :color="'#d340c3'"
+                         @click="markerInfo"
+      ></BmPointCollection>
+      <BmGeolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></BmGeolocation>
     </baidu-map>
   </div>
 </template>
@@ -32,6 +33,7 @@ import BaiduMap from './components/map/Map.vue'
 import BmView from './components/map/MapView.vue'
 import BmScale from './components/controls/Scale.vue'
 import BmNavigation from './components/controls/Navigation.vue'
+import BmGeolocation from './components/controls/Geolocation .vue'
 import BmMarker from './components/overlays/Marker.vue'
 import BmPolyine from './components/overlays/Polyline.vue'
 import BmPolygon from './components/overlays/Polygon.vue'
@@ -40,7 +42,7 @@ import BmPointCollection from './components/overlays/PointCollection.vue'
 export default {
   name: 'App',
   components: {
-    BaiduMap, BmView, BmScale, BmNavigation,
+    BaiduMap, BmView, BmScale, BmNavigation, BmGeolocation,
     BmMarker, BmPolyine, BmPolygon, BmCircle, BmPointCollection
   },
   data () {

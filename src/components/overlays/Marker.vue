@@ -1,5 +1,4 @@
 <!--qiu.bl-->
-<style></style>
 <template>
   <div>
     <slot></slot>
