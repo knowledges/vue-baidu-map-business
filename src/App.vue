@@ -5,21 +5,24 @@
       <bm-view style="width: 100%; height: 100%; flex: 1;"></bm-view>
       <bm-scale :anchor="'BMAP_ANCHOR_BOTTOM_LEFT'" :offset="{width: 0, height: 50}"></bm-scale>
       <bm-navigation :anchor="'BMAP_ANCHOR_TOP_LEFT'" :type="'BMAP_NAVIGATION_CONTROL_LARGE'"></bm-navigation>
-      <bm-marker :position="coords"
-                 :Loffset="{width: 15, height: -15}"
-                 :labelStyle="labelStyle"
-                 :animation="'BMAP_ANIMATION_DROP'"
-                 @click="markerInfo"
-      ></bm-marker>
+      <template v-for="item in MyLocation">
+        <bm-marker :position="item"
+                   :Loffset="{width: 15, height: -15}"
+                   :labelStyle="labelStyle"
+                   :animation="'BMAP_ANIMATION_DROP'"
+                   @click="markerInfo"
+        ></bm-marker>
+      </template>
+
       <BmPolyine :path="coords" :strokeColor="'red'" :strokeWeight="2" :strokeOpacity="0.7"></BmPolyine>
-      <BmPolygon :path="coords" :strokeColor="'blue'" :strokeWeight="2" :strokeOpacity="1"></BmPolygon>
-      <BmCircle :center="{lng: '118.779142', lat: '31.981107'}" :radius="50" :strokeColor="'blue'" :strokeWeight="1" :strokeOpacity="0.4"></BmCircle>
-      <BmPointCollection :points="points"
-                         :shape="'BMAP_POINT_SHAPE_STAR'"
-                         :size="'BMAP_POINT_SIZE_SMALL'"
-                         :color="'#d340c3'"
-                         @click="markerInfo"
-      ></BmPointCollection>
+      <!--<BmPolygon :path="coords" :strokeColor="'blue'" :strokeWeight="2" :strokeOpacity="1"></BmPolygon>-->
+      <!--<BmCircle :center="{lng: '118.779142', lat: '31.981107'}" :radius="50" :strokeColor="'blue'" :strokeWeight="1" :strokeOpacity="0.4"></BmCircle>-->
+      <!--<BmPointCollection :points="points"-->
+                         <!--:shape="'BMAP_POINT_SHAPE_CIRCLE'"-->
+                         <!--:size="'BMAP_POINT_SIZE_SMALL'"-->
+                         <!--:color="'#d340c3'"-->
+                         <!--@click="markerInfo"-->
+      <!--&gt;</BmPointCollection>-->
     </baidu-map>
   </div>
 </template>
@@ -50,11 +53,11 @@ export default {
         'color': '#FFF',
         'padding': '6px',
       },
-      MyLocation: {
+      MyLocation: [{
         lng: '118.759319',
         lat: '31.969347',
         title: '牛首坊'
-      },
+      }],
       coords: [
         {
           lng: '118.783549',
@@ -102,7 +105,7 @@ export default {
     },
     addPoints () {
       const points = [];
-      for (var i = 0; i < 10000; i++) {
+      for (var i = 0; i < 1000; i++) {
         const position = {lng: Math.random() * 40 + 85, lat: Math.random() * 30 + 21}
         points.push(position)
       }
