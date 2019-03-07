@@ -4,6 +4,7 @@
 <script>
 import commonMinxin from '../base/mixins/common'
 import {CreatePoint} from '../base/mixins/factory'
+import {checkType} from '../base/utils'
 export default {
   name: 'bm-polyine',
   mixins: [commonMinxin('overlay')],
@@ -70,6 +71,7 @@ export default {
   },
   methods: {
     load () {
+      if (checkType(path) === 'Object') return
       const {BMap, map, path, strokeColor, strokeWeight, strokeOpacity, strokeStyle, massClear, editing, clicking} = this
       const overlay = new BMap.Polyline(path.map(item => CreatePoint(BMap, {lng: item.lng, lat: item.lat})), {
         strokeColor: strokeColor,
