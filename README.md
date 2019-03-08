@@ -1,5 +1,14 @@
 # vue-baidu-map-business
 百度地图业务组件
+Installation
+yarn
+```bash
+yarn add vue-baidu-map-business
+```
+npm
+```bash
+npm i vue-baidu-map-business --save
+```
 全局注册
 全局注册将一次性引入百度地图组件库的所有组件
 ```bash
