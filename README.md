@@ -12,7 +12,7 @@ npm i vue-baidu-map-business --save
 全局注册
 全局注册将一次性引入百度地图组件库的所有组件
 ```bash
-import BaiduMap from 'vue-baidu-map'
+import BaiduMap from 'vue-baidu-map-business'
 
 Vue.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */

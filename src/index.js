@@ -8,20 +8,29 @@ import BmPolyine from './components/overlays/Polyline.vue'
 import BmCircle from './components/overlays/Circle.vue'
 import BmPointCollection from './components/overlays/PointCollection.vue'
 
-export default {
-  install (Vue, opt) {
-    const { ak } = opt
-    Vue.prototype._BMap = () => ({ak})
-    Vue.component('baidu-map', BaiduMap)
-    Vue.component('bm-view', BmView)
-    Vue.component('bm-scale', BmScale)
-    Vue.component('bm-navigation', BmNavigation)
-    Vue.component('bg-geolocation', BmGeolocation)
-    Vue.component('bm-marker', BmMarker)
-    Vue.component('bm-polyine', BmPolyine)
-    Vue.component('bm-circle', BmCircle)
-    Vue.component('bm-point-collection', BmPointCollection)
-  }
+const components = [
+  BaiduMap, BmView,
+  BmScale, BmNavigation, BmGeolocation,
+  BmMarker, BmPolyine, BmPolyine, BmCircle, BmPointCollection
+]
+
+const install = function (Vue, opt = {}) {
+  const { ak } = opt
+  Vue.prototype._BMap = () => ({ak})
+  components.forEach(component => {
+    Vue.component(component.name, component)
+  })
 }
 
-export { BaiduMap, BmView, BmScale, BmNavigation, BmMarker, BmPolyine, BmCircle, BmPointCollection }
+if (typeof Window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+
+export default {
+  version: '1.0.3',
+  install,
+  BaiduMap, BmView,
+  BmScale, BmNavigation, BmGeolocation,
+  BmMarker, BmPolyine, BmPolyine, BmCircle, BmPointCollection
+}
+
