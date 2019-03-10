@@ -27,7 +27,7 @@ if (typeof Window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.0.3',
+  version: '1.0.4',
   install,
   BaiduMap, BmView,
   BmScale, BmNavigation, BmGeolocation,
