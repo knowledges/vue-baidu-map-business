@@ -4,14 +4,17 @@ import BmScale from './components/controls/Scale.vue'
 import BmNavigation from './components/controls/Navigation.vue'
 import BmGeolocation from './components/controls/Geolocation .vue'
 import BmMarker from './components/overlays/Marker.vue'
+import BmPolygon from './components/overlays/Polygon.vue'
 import BmPolyine from './components/overlays/Polyline.vue'
 import BmCircle from './components/overlays/Circle.vue'
 import BmPointCollection from './components/overlays/PointCollection.vue'
+/* 热力图 */
+/* 聚合 */
 
 const components = [
   BaiduMap, BmView,
   BmScale, BmNavigation, BmGeolocation,
-  BmMarker, BmPolyine, BmPolyine, BmCircle, BmPointCollection
+  BmMarker, BmPolygon, BmPolyine, BmCircle, BmPointCollection
 ]
 
 const install = function (Vue, opt = {}) {
@@ -27,10 +30,10 @@ if (typeof Window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.0.4',
+  version: '1.0.8',
   install,
   BaiduMap, BmView,
   BmScale, BmNavigation, BmGeolocation,
-  BmMarker, BmPolyine, BmPolyine, BmCircle, BmPointCollection
+  BmMarker, BmPolyine, BmPolygon, BmCircle, BmPointCollection
 }
 

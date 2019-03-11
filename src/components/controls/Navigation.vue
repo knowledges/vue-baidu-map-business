@@ -4,7 +4,7 @@
 import CommonMixins from '../base/mixins/common'
 import {CreateSize} from '../base/mixins/factory'
 export default {
-  name: 'bg-navigation',
+  name: 'bm-navigation',
   props: {
     anchor: {
       type: String

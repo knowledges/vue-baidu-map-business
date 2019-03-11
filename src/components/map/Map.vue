@@ -8,7 +8,7 @@
 <script>
 import {checkType} from '../base/utils'
 export default {
-  name: 'bm-map',
+  name: 'baidu-map',
   components: {},
   props: {
     ak: {

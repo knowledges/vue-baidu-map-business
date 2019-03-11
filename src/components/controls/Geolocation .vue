@@ -5,7 +5,7 @@ import commonMixin from '../base/mixins/common'
 import bindEvents from '../base/bindEvent'
 import {CreateSize} from '../base/mixins/factory'
 export default {
-  name: 'bg-geolocation',
+  name: 'bm-geolocation',
   mixins: [commonMixin('control')],
   props: {
     anchor: {
