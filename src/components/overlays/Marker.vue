@@ -16,8 +16,8 @@ export default {
     position: {
       type: Object
     },
-    Moffset: { }, // 批注的 offset
-    Micon: { },// 批注的 icon
+    mOffset: { }, // 批注的 offset
+    mIcon: { },// 批注的 icon
     massClear: {
       type: Boolean,
       default: true
@@ -46,7 +46,7 @@ export default {
     animation: {
       type: String
     },
-    Loffset: {}, // label 的 offset
+    loffset: {}, // label 的 offset
     labelStyle: {}
   },
   data() {
@@ -81,10 +81,10 @@ export default {
   },
   methods: {
     load () {
-      const { BMap, map, Moffset, Micon, massClear, dragging, clicking, raiseOnDrag, draggingCursor, rotation, shadow, labelStyle, Loffset, position } = this
+      const { BMap, map, mOffset, mIcon, massClear, dragging, clicking, raiseOnDrag, draggingCursor, rotation, shadow, labelStyle, loffset, position } = this
       const overlay = new BMap.Marker(new BMap.Point(position.lng, position.lat), {
-        offset: Moffset,
-        icon: Micon,
+        offset: mOffset,
+        icon: mIcon,
         enableMassClear: massClear,
         enableDragging: dragging,
         enableClicking: clicking,
@@ -97,7 +97,7 @@ export default {
       this.$set(overlay, 'item', position)
       this.initialInstance = overlay
       var content = position.title
-      const params = { content, Loffset, labelStyle }
+      const params = { content, loffset, labelStyle }
       position.title && overlay && overlay.setLabel(CreateLable(BMap, params))
       bindEvents.call(this, overlay)
       map.addOverlay(overlay)
