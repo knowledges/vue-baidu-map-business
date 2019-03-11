@@ -14,37 +14,23 @@
         ></bm-marker>
       </template>
 
-      <!--<BmPolyine :path="coords" :strokeColor="'red'" :strokeWeight="2" :strokeOpacity="0.7"></BmPolyine>-->
-      <!--<BmPolygon :path="coords" :strokeColor="'blue'" :strokeWeight="2" :strokeOpacity="0.5"></BmPolygon>-->
-      <BmCircle :center="{lng: '118.779142', lat: '31.981107'}" :radius="50" :strokeColor="'blue'" :strokeWeight="1" :strokeOpacity="0.4"></BmCircle>
-      <BmPointCollection :points="points"
+      <bm-polyine :path="coords" :strokeColor="'red'" :strokeWeight="2" :strokeOpacity="0.7"></bm-polyine>
+      <bm-polygon :path="coords" :strokeColor="'blue'" :strokeWeight="2" :strokeOpacity="0.5"></bm-polygon>
+      <bm-circle :center="{lng: '118.779142', lat: '31.981107'}" :radius="50" :strokeColor="'blue'" :strokeWeight="1" :strokeOpacity="0.4"></bm-circle>
+      <bm-point-collection :points="points"
                          :shape="'BMAP_POINT_SHAPE_CIRCLE'"
                          :size="'BMAP_POINT_SIZE_SMALL'"
                          :color="'#d340c3'"
                          @click="markerInfo"
-      ></BmPointCollection>
-      <BmGeolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></BmGeolocation>
+      ></bm-point-collection>
+      <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
     </baidu-map>
   </div>
 </template>
 
 <script>
-import BaiduMap from './components/map/Map.vue'
-import BmView from './components/map/MapView.vue'
-import BmScale from './components/controls/Scale.vue'
-import BmNavigation from './components/controls/Navigation.vue'
-import BmGeolocation from './components/controls/Geolocation .vue'
-import BmMarker from './components/overlays/Marker.vue'
-import BmPolyine from './components/overlays/Polyline.vue'
-import BmPolygon from './components/overlays/Polygon.vue'
-import BmCircle from './components/overlays/Circle.vue'
-import BmPointCollection from './components/overlays/PointCollection.vue'
 export default {
   name: 'App',
-  components: {
-    BaiduMap, BmView, BmScale, BmNavigation, BmGeolocation,
-    BmMarker, BmPolyine, BmPolygon, BmCircle, BmPointCollection
-  },
   data () {
     return {
       labelStyle: {
@@ -131,6 +117,6 @@ export default {
 }
 .bm-view {
   width: 100%;
-  height: 620px;
+  height: 100%;
 }
 </style>

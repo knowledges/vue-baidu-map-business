@@ -1,8 +1,8 @@
 {
   "name": "vue-baidu-map-business",
-  "version": "1.0.4",
+  "version": "1.0.8",
   "description": "map",
-  "main": "dist/vue-map-business.min.js",
+  "main": "dist/vue-baidu-map-business.js",
   "author": "woods.qiu",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",

@@ -30,8 +30,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,
     publicPath: config.build.assetsPublicPath,
-    filename: 'vue-map-business.min.js',
-    library: 'vue-map-business',
+    filename: '../dist/vue-baidu-map-business.js',
+    library: 'VueBaiduMapBusiness',
     libraryTarget: 'umd' // libraryTarget会生成不同umd的代码,可以只是commonjs标准的，也可以是指amd标准的，也可以只是通过script标签引入的
   },
   plugins: [

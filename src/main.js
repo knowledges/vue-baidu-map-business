@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import BaiduMap from './index'
+Vue.use(BaiduMap, {
+  ak: 'sFGGCnZu8HcewIdGMFGGaGypsfILG36G'
+})
 
 const errorHandler = (error, vm, info) => {
   console.error('抛出全局异常')
@@ -12,9 +15,7 @@ const errorHandler = (error, vm, info) => {
 Vue.config.errorHandler = errorHandler
 Vue.config.performance = false
 Vue.config.productionTip = false
-Vue.use(BaiduMap, {
-  ak: 'sFGGCnZu8HcewIdGMFGGaGypsfILG36G'
-})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
