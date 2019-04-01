@@ -6,7 +6,7 @@
 </template>
 <script>
 import commonMinxin from '../base/mixins/common'
-import {CreateSize, CreateLable, CreatePoint} from '../base/mixins/factory'
+import {CreateLable, CreatePoint} from '../base/mixins/factory'
 import bindEvents from '../base/bindEvent'
 export default {
   name: 'bm-marker',

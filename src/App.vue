@@ -7,7 +7,7 @@
       <bm-navigation :anchor="'BMAP_ANCHOR_TOP_LEFT'" :type="'BMAP_NAVIGATION_CONTROL_LARGE'"></bm-navigation>
       <template v-for="item in coords">
         <bm-marker :position="item"
-                   :Loffset="{width: 15, height: -15}"
+                   :loffset="{width: 15, height: -15}"
                    :labelStyle="labelStyle"
                    :animation="'BMAP_ANIMATION_DROP'"
                    @click="markerInfo"
@@ -117,6 +117,6 @@ export default {
 }
 .bm-view {
   width: 100%;
-  height: 100%;
+  height: 620px;
 }
 </style>

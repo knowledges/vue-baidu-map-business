@@ -3,7 +3,7 @@ export function CreatePoint(BMap, options = {}) {
   return new BMap.Point(lng, lat)
 }
 
-export function CreateSize(BMap, options) {
+export function CreateSize(BMap, options = {}) {
   const { width, height } = options
   return new BMap.Size(width, height)
 }
