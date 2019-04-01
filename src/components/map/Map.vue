@@ -133,7 +133,10 @@ export default {
         })
         return global.BMap._preloader
       } else if (!global.BMap._preloader) {
-        return Promise.reject(global.BMap)
+        // return Promise.reject(global.BMap)
+        /* Be Careful 这里不能返回 一个拒绝的原因，
+        应该直接返回一个解析后的 Promise 对象 */
+        return Promise.resolve(global.BMap)
       } else {
         return global.BMap._preloader
       }
