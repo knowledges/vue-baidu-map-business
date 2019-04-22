@@ -5,7 +5,7 @@ import commonMinxin from '../base/mixins/common'
 import {CreatePoint} from '../base/mixins/factory'
 export default {
   name: 'bm-circle',
-  mixins: [commonMinxin('overlay')],
+  mixins: [commonMinxin('search')],
   props: {
     center: {
       type: Object
